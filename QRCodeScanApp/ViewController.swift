@@ -25,10 +25,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     func setupVideo() {
         // 2. Настраиваем устройство видео
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         // 3. Настроим input
         do {
-            let input = try AVCaptureDeviceInput(device: captureDevice!) // обработать
+            let input = try AVCaptureDeviceInput(device: captureDevice)
             session.addInput(input)
         } catch {
             fatalError(error.localizedDescription)
